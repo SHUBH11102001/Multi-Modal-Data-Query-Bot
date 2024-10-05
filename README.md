@@ -1,7 +1,5 @@
 # AI Document Chatbot
 
-# AI Document Chatbot
-
 Welcome to the AI Document Chatbot project! This application allows users to interact with various document formats, including Excel, SQL databases, and PDF files, using an AI-driven chatbot interface. The chatbot is built with Streamlit, LangChain, and the Groq API, providing an intuitive experience for data exploration and inquiry.
 
 ## Table of Contents
