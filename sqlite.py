@@ -1,3 +1,5 @@
+#JUST FOR TESTING--- IN CASE USER DOES NOT HAVE HIS OWN SQL DATABASE
+
 import sqlite3
 
 ## connect to sqllite
