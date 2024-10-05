@@ -1,23 +1,61 @@
 # AI Document Chatbot
 
+# AI Document Chatbot
+
+Welcome to the AI Document Chatbot project! This application allows users to interact with various document formats, including Excel, SQL databases, and PDF files, using an AI-driven chatbot interface. The chatbot is built with Streamlit, LangChain, and the Groq API, providing an intuitive experience for data exploration and inquiry.
+
+## Table of Contents
+
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [How It Works](#how-it-works)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
+
+## Features
+
+- **Excel Interaction**: Upload an Excel file to query and analyze data interactively.
+- **SQL Database Communication**: Connect to SQLite or MySQL databases to ask questions and retrieve information.
+- **PDF Document Q&A**: Upload PDF files to engage in conversational retrieval-augmented generation (RAG) tasks, allowing users to ask questions based on the document's content.
+- **Session Management**: Maintain chat history across user sessions for more context-aware responses.
+- **Error Handling**: Provides user-friendly error messages for smoother interaction.
+
+## Technologies Used
+
+- **Streamlit**: For building the web application interface.
+- **LangChain**: For creating and managing AI interactions.
+- **Groq API**: For leveraging powerful language models (Llama3) for chat capabilities.
+- **Pandas**: For data manipulation and analysis of Excel files.
+- **SQLAlchemy**: For connecting to and interacting with SQL databases.
+- **FAISS**: For efficient vector storage and retrieval in PDF Q&A tasks.
+- **SQLite/MySQL**: For database interaction.
+
 ## Installation
 
 To set up the project locally, follow these steps:
 
-1. **Install the required dependencies**:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/ai-document-chatbot.git
+   cd ai-document-chatbot
+
+2. **Install the required dependencies**:
    ```bash
    pip install -r requirements.txt
    ```
 
-2. **Set your Groq API key**:
+3. **Set your Groq API key**:
    - Obtain your Groq API key and add it in the application via the sidebar input.
 
-3. **Run the Streamlit application**:
+4. **Run the Streamlit application**:
    ```bash
    streamlit run app.py
    ```
-
-4. Open your web browser and navigate to `http://localhost:8501` to access the chatbot interface.
+   
+5. Open your web browser and navigate to `http://localhost:8501` to access the chatbot interface.
 
 ## Usage
 
