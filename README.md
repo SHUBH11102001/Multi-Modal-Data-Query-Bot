@@ -71,10 +71,12 @@ To set up the project locally, follow these steps:
      - Upload one or more PDF files.
      - Ask questions regarding the PDF content, and the chatbot will use RAG techniques to provide answers based on the document's context.
 
+## Demo link--https://multi-modal-data-query-bot-kqeiaptzccxbdcgqxa29rt.streamlit.app/
+
 ## How It Works
 
 - The chatbot utilizes the Groq API to process user queries and generate responses.
-- For Excel, data is loaded into a SQLite database for querying using SQL.
+- For Excel, data is loaded into a SQLite database for querying using SQL. Excel should be well structured for this purpose.
 - For SQL databases, the application connects to the specified database and processes user queries.
 - For PDFs, the application extracts text, splits it into manageable chunks, and uses embeddings for context-aware retrieval.
 
