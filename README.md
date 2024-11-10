@@ -107,3 +107,6 @@ Contributions are welcome! If you would like to contribute to this project, plea
 
 - Thanks to the LangChain team for their amazing library that simplifies working with LLMs and building applications.
 - Special thanks to the Groq API for providing access to powerful language models.
+  
+## Contact
+Created by `Shubh Nema`. Feel free to contact me at shubhnema617@gmail.com for any questions or feedback.
