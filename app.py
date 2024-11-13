@@ -76,17 +76,30 @@ else:
             user_query = st.chat_input(placeholder="How can I help you with the data")
 
             if user_query:
+                
                 st.session_state["Excel_messages"].append({"role": "user", "content": user_query})
                 st.chat_message("user").write(user_query)
 
-                last_assistant_message = st.session_state["Excel_messages"][-1]["content"] if len(st.session_state["Excel_messages"]) > 1 else ""
-                prompt = f"Context: The database has a table called 'data'. Previous assistant message: {last_assistant_message}. User query: {user_query}. Please provide only a final answer or a single action."
-
+                last_query = st.session_state["Excel_messages"][-2]["content"] if len(st.session_state["Excel_messages"]) > 1 else None
+                context_query = f"Context: The database has a table called 'data'. User query:'{user_query}'. Please provide only a final answer or a single action."
+                
+                
+                if last_query:
+                    
+                    relevance_prompt = (
+                    f"Is query 2 a follow up question of query 1?\n\nQuery 1: {last_query}\n\nQuery 2: {user_query}\n\n"
+                    "Respond only with 'yes' or 'no', do not give any other text."
+                    )
+                    relevance_response = llm.invoke(relevance_prompt).content.strip().lower()
+                    
+                    if relevance_response == "yes":
+                        context_query = f"Context: The database has a table called 'data' Previous query: '{last_query}'.\n\nFollow-up query based on the previous question: '{user_query}'. Please provide only a final answer or a single action."
+                     
                 
                 with st.chat_message("assistant"):
                     streamlit_callback = StreamlitCallbackHandler(st.container())  
                     try:
-                        response = agent.run(prompt, callbacks=[streamlit_callback])
+                        response = agent.run(context_query, callbacks=[streamlit_callback])
                     except Exception as e:
                         response = f"Error: {str(e)}"
                     st.session_state["Excel_messages"].append({"role": "assistant", "content": response})
@@ -133,12 +146,26 @@ else:
         if user_query:
             st.session_state["SQL_messages"].append({"role": "user", "content": user_query})
             st.chat_message("user").write(user_query)
+    
+             # Check if last query is related to the new one
+            last_query = st.session_state["SQL_messages"][-2]["content"] if len(st.session_state["SQL_messages"]) > 1 else None
+            context_query = user_query
+
+            if last_query:
+                relevance_prompt = (
+                f"Is query 2 a follow up question of query 1?\n\nQuery 1: {last_query}\n\nQuery 2: {user_query}\n\n"
+                "Respond only with 'yes' or 'no', do not give any other text."
+                )
+                relevance_response = llm.invoke(relevance_prompt).content.strip().lower()
+
+                if relevance_response == "yes":
+                    context_query = f"Previous query: '{last_query}'.\n\nFollow-up query based on the previous question: '{user_query}'. Please provide only a final answer or a single action."
 
             
             with st.chat_message("assistant"):
                 streamlit_callback = StreamlitCallbackHandler(st.container())  
                 try:
-                    response = agent.run(user_query, callbacks=[streamlit_callback])
+                    response = agent.run(context_query, callbacks=[streamlit_callback])
                 except Exception as e:
                     response = f"Error: {str(e)}"
                 st.session_state["SQL_messages"].append({"role": "assistant", "content": response})
